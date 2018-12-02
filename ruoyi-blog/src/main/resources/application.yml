@@ -1,0 +1,29 @@
+spring:
+  profiles:
+    active: jdbc
+
+# thymeleaf
+  thymeleaf:
+    prefix: classpath:/templates/
+    check-template-location: true
+    suffix: .html
+    encoding: UTF-8
+    mode: HTML5
+    cache: false
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.my.blog.dao
+
+server:
+  port: 8081
+
+#pagehelper
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params=count: countSql
+
+
+
