@@ -13,11 +13,10 @@ public class FanoutProcedure {
     @Autowired
     private AmqpTemplate amqpTemplate;
 
-
     public void send(){
         String context = "发布订阅模式";
 
         System.out.println("Send : " +context);
-        this.amqpTemplate.convertAndSend("faExchange","faA",context);
+        this.amqpTemplate.convertAndSend("faExchange","",context);
     }
 }

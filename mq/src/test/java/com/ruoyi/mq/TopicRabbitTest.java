@@ -1,5 +1,6 @@
 package com.ruoyi.mq;
 
+import com.ruoyi.mq.rabbitmq.procuder.DirectProducer;
 import com.ruoyi.mq.rabbitmq.procuder.FanoutProcedure;
 import com.ruoyi.mq.rabbitmq.procuder.TopicRabbitProcedure;
 import org.junit.Test;
@@ -18,6 +19,9 @@ public class TopicRabbitTest {
     @Autowired
     private FanoutProcedure fanoutProcedure;
 
+    @Autowired
+    private DirectProducer directProducer;
+
     @Test
     public void topic() throws Exception{
         //procedure.send();
@@ -29,6 +33,11 @@ public class TopicRabbitTest {
     @Test
     public void fanout(){
         fanoutProcedure.send();
+    }
+
+    @Test
+    public void direct(){
+        directProducer.directHello();
     }
 
 }
