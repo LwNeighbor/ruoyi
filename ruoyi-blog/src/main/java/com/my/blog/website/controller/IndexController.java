@@ -63,6 +63,7 @@ public class IndexController extends BaseController {
     @GetMapping(value = {"/", "index"})
     public String index(HttpServletRequest request, @RequestParam(value = "limit", defaultValue = "12") int limit) {
         return this.index(request, 1, limit);
+        //return THEME+"/index1";
     }
 
     /**
@@ -78,10 +79,11 @@ public class IndexController extends BaseController {
         p = p < 0 || p > WebConst.MAX_PAGE ? 1 : p;
         PageInfo<ContentVo> articles = contentService.getContents(p, limit);
         request.setAttribute("articles", articles);
+
         if (p > 1) {
             this.title(request, "第" + p + "页");
         }
-        return this.render("index");
+        return this.render("index1");
     }
 
     /**
@@ -101,7 +103,7 @@ public class IndexController extends BaseController {
         request.setAttribute("is_post", true);
         completeArticle(request, contents);
         updateArticleHit(contents.getCid(), contents.getHits());
-        return this.render("post");
+        return this.render("post1");
     }
 
     /**
@@ -395,7 +397,7 @@ public class IndexController extends BaseController {
         request.setAttribute("type", "标签");
         request.setAttribute("keyword", name);
 
-        return this.render("page-category");
+        return this.render("page-category1");
     }
 
     /**
