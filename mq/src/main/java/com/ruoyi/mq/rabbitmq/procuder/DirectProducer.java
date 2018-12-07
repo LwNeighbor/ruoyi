@@ -18,7 +18,12 @@ public class DirectProducer {
         String context = "direct...";
 
         rabbitTemplate.convertAndSend("direct_exchange","hello",context);
+    }
 
+    public void directHi(){
+        String context = "hello And Hi";
+
+        rabbitTemplate.convertAndSend("direct_exchange","hi",context);
     }
 
 }
