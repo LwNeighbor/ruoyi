@@ -1,149 +1,15 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Paper &mdash; Free Website Template, Free HTML5 Template by freehtml5.co</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="Free HTML5 Website Template by freehtml5.co" />
-	<meta name="keywords" content="free website templates, free html5, free template, free bootstrap, free website template, html5, css3, mobile first, responsive" />
-	<meta name="author" content="freehtml5.co" />
-
-	<!--
-	//////////////////////////////////////////////////////
-
-	FREE HTML5 TEMPLATE
-	DESIGNED & DEVELOPED by FreeHTML5.co
-
-	Website: 		http://freehtml5.co/
-	Email: 			info@freehtml5.co
-	Twitter: 		http://twitter.com/fh5co
-	Facebook: 		https://www.facebook.com/fh5co
-
-	//////////////////////////////////////////////////////
-	 -->
-
-	<!-- Facebook and Twitter integration -->
-	<meta property="og:title" content=""/>
-	<meta property="og:image" content=""/>
-	<meta property="og:url" content=""/>
-	<meta property="og:site_name" content=""/>
-	<meta property="og:description" content=""/>
-	<meta name="twitter:title" content="" />
-	<meta name="twitter:image" content="" />
-	<meta name="twitter:url" content="" />
-	<meta name="twitter:card" content="" />
-
-	<link rel="stylesheet" th:href="@{/layui/css/layui.css}" href="" media="all">
-
-	<link href="https://fonts.googleapis.com/css?family=Josefin+Slab:400,600,700" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Sacramento" rel="stylesheet">
-
-	<!-- Animate.css -->
-	<link rel="stylesheet" th:href="@{/theme1/css/animate.css}">
-	<!-- Icomoon Icon Fonts-->
-	<link rel="stylesheet" th:href="@{/theme1/css/icomoon.css}">
-	<!-- Bootstrap  -->
-	<link rel="stylesheet" th:href="@{/theme1/css/bootstrap.css}">
-
-	<!-- Magnific Popup -->
-	<link rel="stylesheet" th:href="@{/theme1/css/magnific-popup.css}">
-
-	<!-- Flexslider  -->
-	<link rel="stylesheet" th:href="@{/theme1/css/flexslider.css}">
-
-	<!-- Theme style  -->
-	<link rel="stylesheet" th:href="@{/theme1/css/style.css}">
-
-	<!-- Modernizr JS -->
-	<script th:src="@{/theme1/js/modernizr-2.6.2.min.js}"></script>
-	<!-- FOR IE9 below -->
-	<!--[if lt IE 9]>
-	<script th:src="@{/theme1/js/respond.min.js}"></script>
-	<![endif]-->
-
-
-</head>
+<head th:replace="common_head :: common_header"></head>
 <body>
-
 <div class="fh5co-loader"></div>
-
 <div id="page">
-	<nav class="fh5co-nav" role="navigation">
-		<div class="container-fluid">
-			<div class="row">
-				<div class="top-menu">
-					<div class="container">
-						<div class="row">
-							<div class="col-sm-7 text-left menu-1">
-								<ul>
-									<li class="active"><a href="index.html">Home</a></li>
-									<li><a href="blog.html">Lifestyle</a></li>
-									<li class="has-dropdown">
-										<a href="blog.html">Blog</a>
-										<ul class="dropdown">
-											<li><a href="#">Web Design</a></li>
-											<li><a href="#">eCommerce</a></li>
-											<li><a href="#">Branding</a></li>
-											<li><a href="#">API</a></li>
-										</ul>
-									</li>
-									<li><a href="about.html">About</a></li>
-									<li><a href="contact.html">Contact</a></li>
-								</ul>
-							</div>
-							<div class="col-sm-5">
-								<ul class="fh5co-social-icons">
-									<li><a href="#"><i class="icon-twitter-with-circle"></i></a></li>
-									<li><a href="#"><i class="icon-facebook-with-circle"></i></a></li>
-									<li><a href="#"><i class="icon-linkedin-with-circle"></i></a></li>
-									<li><a href="#"><i class="icon-dribbble-with-circle"></i></a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-xs-12 text-center menu-2">
-					<div id="fh5co-logo">
-						<h1>
-							<a href="index.html">
-								Paper<span>.</span>
-								<small>Blog Theme</small>
-							</a>
-						</h1>
-					</div>
-				</div>
-			</div>
-		</div>
-	</nav>
-
+	<nav th:replace="common_head :: common_nav"></nav>
 	<div id="fh5co-content">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-9 col-padded-right">
 					<div class="row">
-						<div class="col-md-12">
-							<div class="fh5co-blog animate-box">
-								<div class="title title-pin text-center">
-									<span class="posted-on">Nov. 15th 2016</span>
-									<h3><a href="#">Modeling &amp; Stylist in USA</a></h3>
-									<span class="category">Lifestyle</span>
-								</div>
-								<a href="#"><img class="img-responsive" src="images/blog-1.jpg" alt=""></a>
-								<div class="blog-text text-center">
-									<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. Odit ab aliquam dolor eius. Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. Odit ab aliquam dolor eius.</p>
-									<ul class="fh5co-social-icons">
-										<li>Share:</li>
-										<li><a href="#"><i class="icon-twitter-with-circle"></i></a></li>
-										<li><a href="#"><i class="icon-facebook-with-circle"></i></a></li>
-										<li><a href="#"><i class="icon-linkedin-with-circle"></i></a></li>
-										<li><a href="#"><i class="icon-dribbble-with-circle"></i></a></li>
-									</ul>
-								</div>
-							</div>
-						</div>
 						<div class="col-md-6" th:each="article: ${articles.list}">
 							<div class="fh5co-blog animate-box">
 								<div class="title text-center">
@@ -151,8 +17,8 @@
 									<h3><a th:href="${commons.permalink(article)}" th:text="${article.title}"></a></h3>
 									<span class="category" th:utext="${commons.show_categories(article.categories)}"></span>
 								</div>
-								<a href="#"><img class="img-responsive" th:src="@{/user/img/rand/1.jpg}" alt=""></a>
-								<div class="blog-text text-center">
+								<!--<a href="#"><img class="img-responsive" th:src="@{/user/img/rand/1.jpg}" alt=""></a>-->
+								<!--<div class="blog-text text-center">
 									<p th:utext="${#strings.substring(article.content,10,20)}"></p>
 									<ul class="fh5co-social-icons">
 										<li>Share:</li>
@@ -161,7 +27,7 @@
 										<li><a href="#"><i class="icon-linkedin-with-circle"></i></a></li>
 										<li><a href="#"><i class="icon-dribbble-with-circle"></i></a></li>
 									</ul>
-								</div>
+								</div>-->
 							</div>
 						</div>
 					</div>
@@ -180,47 +46,8 @@
 								<strong class="role">菜比一枚</strong>
 								<p>这是一个大彩笔</p>
 								<ul class="fh5co-social-icons">
-									<li><a href="#"><i class="icon-facebook"></i></a></li>
-									<li><a href="#"><i class="icon-twitter"></i></a></li>
-									<li><a href="#"><i class="icon-dribbble"></i></a></li>
-									<li><a href="#"><i class="icon-github"></i></a></li>
+									<li><a href="https://github.com/" target="_blank"><i class="icon-github"></i></a></li>
 								</ul>
-							</div>
-						</div>
-						<div class="side animate-box">
-							<div class="col-md-12 col-md-offset-0 text-center fh5co-heading fh5co-heading-sidebar">
-								<h2><span>Latest Posts</span></h2>
-							</div>
-
-							<div class="blog-entry" th:each="article,index: ${articles.list}" th:if="${index.index < 3}">
-								<a href="#">
-									<img th:src="@{/theme1/images/blog-1.jpg}" class="img-responsive" alt="">
-									<div class="desc">
-										<span class="date" th:utext="${article.created}">Dec. 25, 2016</span>
-										<h3 th:text="${article.title}"></h3>
-									</div>
-								</a>
-							</div>
-
-						</div>
-						<div class="side animate-box">
-							<div class="col-md-12 col-md-offset-0 text-center fh5co-heading fh5co-heading-sidebar">
-								<h2><span>Category</span></h2>
-							</div>
-							<ul class="category">
-								<li><a href="#"><i class="icon-check"></i>Lifestyle</a></li>
-							</ul>
-						</div>
-						<div class="side animate-box">
-							<div class="col-md-12 col-md-offset-0 text-center fh5co-heading fh5co-heading-sidebar">
-								<h2><span>Intagram</span></h2>
-							</div>
-							<div class="row">
-								<div class="col-md-12">
-									<div class="insta" style="background-image: url(images/insta-1.jpg);">
-
-									</div>
-								</div>
 							</div>
 						</div>
 					</div>
@@ -229,91 +56,13 @@
 			</div>
 		</div>
 	</div>
-
-	<footer id="fh5co-footer" role="contentinfo">
-		<div class="container">
-			<div class="row row-pb-md">
-				<div class="col-md-4 fh5co-widget">
-					<h4>Paper</h4>
-					<p>Facilis ipsum reprehenderit nemo molestias. Aut cum mollitia reprehenderit. Eos cumque dicta adipisci architecto culpa amet.</p>
-				</div>
-				<div class="col-md-4 col-md-push-1">
-					<h4>Links</h4>
-					<ul class="fh5co-footer-links">
-						<li><a href="#">Home</a></li>
-						<li><a href="#">Blog</a></li>
-						<li><a href="#">Lifestyle</a></li>
-						<li><a href="#">About</a></li>
-						<li><a href="#">Contact</a></li>
-					</ul>
-				</div>
-
-				<div class="col-md-4 col-md-push-1">
-					<h4>Contact Information</h4>
-					<ul class="fh5co-footer-links">
-						<li>198 West 21th Street, <br> Suite 721 New York NY 10016</li>
-						<li><a href="tel://1234567920">+ 1235 2355 98</a></li>
-						<li><a href="mailto:info@yoursite.com">info@yoursite.com</a></li>
-						<li><a href="http://freehtml5.co">FreeHTML5.co</a></li>
-					</ul>
-				</div>
-
-			</div>
-
-			<div class="row copyright">
-				<div class="col-md-12 text-center">
-					<p>
-						<small class="block">&copy; 2016 Free HTML5. All Rights Reserved.</small>
-						<small class="block">Designed by <a href="http://freehtml5.co/" target="_blank">FreeHTML5.co</a> Demo Images: <a href="http://unsplash.co/" target="_blank">Unsplash</a></small>
-					</p>
-					<p>
-					<ul class="fh5co-social-icons">
-						<li><a href="#"><i class="icon-twitter"></i></a></li>
-						<li><a href="#"><i class="icon-facebook"></i></a></li>
-						<li><a href="#"><i class="icon-linkedin"></i></a></li>
-						<li><a href="#"><i class="icon-dribbble"></i></a></li>
-					</ul>
-					</p>
-				</div>
-			</div>
-
-		</div>
-	</footer>
+	<footer th:replace="common_head :: common_footer"></footer>
 </div>
 
 <div class="gototop js-top">
 	<a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
 </div>
 
-<!-- jQuery -->
-<script th:src="@{/theme1/js/jquery.min.js}"></script>
-<!-- jQuery Easing -->
-<script th:src="@{/theme1/js/jquery.easing.1.3.js}"></script>
-<!-- Bootstrap -->
-<script th:src="@{/theme1/js/bootstrap.min.js}"></script>
-<!-- Waypoints -->
-<script th:src="@{/theme1/js/jquery.waypoints.min.js}"></script>
-<!-- Flexslider -->
-<script th:src="@{/theme1/js/jquery.flexslider-min.js}"></script>
-<!-- Magnific Popup -->
-<script th:src="@{/theme1/js/jquery.magnific-popup.min.js}"></script>
-<script th:src="@{/theme1/js/magnific-popup-options.js}"></script>
-<!-- Main -->
-<script th:src="@{/theme1/js/main.js}"></script>
-
 </body>
-<script th:src="@{/layui/layui.js}"></script>
-<script>
-    layui.use('laypage', function(){
-        var laypage = layui.laypage;
-
-        //执行一个laypage实例
-        laypage.render({
-            elem: 'test1' //注意，这里的 test1 是 ID，不用加 # 号
-            ,count: 50 //数据总数，从服务端得到
-            ,theme: '#bacac8a6'
-        });
-    });
-</script>
 </html>
 

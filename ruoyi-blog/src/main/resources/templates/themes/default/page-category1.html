@@ -1,60 +1,6 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Paper &mdash; Free Website Template, Free HTML5 Template by freehtml5.co</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Free HTML5 Website Template by freehtml5.co" />
-    <meta name="keywords" content="free website templates, free html5, free template, free bootstrap, free website template, html5, css3, mobile first, responsive" />
-    <meta name="author" content="freehtml5.co" />
-
-    <!-- Facebook and Twitter integration -->
-    <meta property="og:title" content=""/>
-    <meta property="og:image" content=""/>
-    <meta property="og:url" content=""/>
-    <meta property="og:site_name" content=""/>
-    <meta property="og:description" content=""/>
-    <meta name="twitter:title" content="" />
-    <meta name="twitter:image" content="" />
-    <meta name="twitter:url" content="" />
-    <meta name="twitter:card" content="" />
-
-    <link rel="stylesheet" th:href="@{/layui/css/layui.css}" href="" media="all">
-
-    <link href="https://fonts.googleapis.com/css?family=Josefin+Slab:400,600,700" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Sacramento" rel="stylesheet">
-
-    <!-- Animate.css -->
-    <link rel="stylesheet" th:href="@{/theme1/css/animate.css}">
-    <!-- Icomoon Icon Fonts-->
-    <link rel="stylesheet" th:href="@{/theme1/css/icomoon.css}">
-    <!-- Bootstrap  -->
-    <link rel="stylesheet" th:href="@{/theme1/css/bootstrap.css}">
-
-    <!-- Magnific Popup -->
-    <link rel="stylesheet" th:href="@{/theme1/css/magnific-popup.css}">
-
-    <!-- Flexslider  -->
-    <link rel="stylesheet" th:href="@{/theme1/css/flexslider.css}">
-
-    <!-- Theme style  -->
-    <link rel="stylesheet" th:href="@{/theme1/css/style.css}">
-
-    <!-- Modernizr JS -->
-    <script th:src="@{/theme1/js/modernizr-2.6.2.min.js}"></script>
-    <!-- FOR IE9 below -->
-    <!--[if lt IE 9]>
-    <script th:src="@{/theme1/js/respond.min.js}"></script>
-    <![endif]-->
-    <link rel="shortcut icon" th:href="@{/user/img/favicon.png}"/>
-    <link rel="apple-touch-icon" th:href="@{/user/img/apple-touch-icon.png}"/>
-    <title><th:block th:text="${title ?: '首页'}+' - '+${commons.site_option('site_title','My Blog')}"></th:block></title>
-    <link th:href="@{//cdn.bootcss.com/highlight.js/9.9.0/styles/xcode.min.css}" rel="stylesheet"/>
-    <link th:href="@{/user/css/style.min.css}" rel="stylesheet"/>
-    <script th:src="@{//cdn.bootcss.com/jquery/2.2.3/jquery.min.js}"></script>
-
-</head>
+<head th:replace="common_head :: common_header"></head>
 
 
 <body>
@@ -62,55 +8,7 @@
 <div class="fh5co-loader"></div>
 
 <div id="page">
-    <nav class="fh5co-nav" role="navigation">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="top-menu">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-sm-7 text-left menu-1">
-                                <ul>
-                                    <li class="active"><a href="index.html">Home</a></li>
-                                    <li><a href="blog.html">Lifestyle</a></li>
-                                    <li class="has-dropdown">
-                                        <a href="blog.html">Blog</a>
-                                        <ul class="dropdown">
-                                            <li><a href="#">Web Design</a></li>
-                                            <li><a href="#">eCommerce</a></li>
-                                            <li><a href="#">Branding</a></li>
-                                            <li><a href="#">API</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="about.html">About</a></li>
-                                    <li><a href="contact.html">Contact</a></li>
-                                </ul>
-                            </div>
-                            <div class="col-sm-5">
-                                <ul class="fh5co-social-icons">
-                                    <li><a href="#"><i class="icon-twitter-with-circle"></i></a></li>
-                                    <li><a href="#"><i class="icon-facebook-with-circle"></i></a></li>
-                                    <li><a href="#"><i class="icon-linkedin-with-circle"></i></a></li>
-                                    <li><a href="#"><i class="icon-dribbble-with-circle"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-12 text-center menu-2">
-                    <div id="fh5co-logo">
-                        <h1>
-                            <a href="index.html">
-                                Paper<span>.</span>
-                                <small>Blog Theme</small>
-                            </a>
-                        </h1>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </nav>
+    <nav th:replace="common_head :: common_nav"></nav>
     <div class="main-content common-page clearfix">
         <div class="categorys-item">
             <div class="common-title">
@@ -136,28 +34,12 @@
 
         </div>
     </div>
+    <footer th:replace="common_head :: common_footer"></footer>
 </div>
 
 
 <div class="gototop js-top">
     <a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
 </div>
-
-<!-- jQuery -->
-<script th:src="@{/theme1/js/jquery.min.js}"></script>
-<!-- jQuery Easing -->
-<script th:src="@{/theme1/js/jquery.easing.1.3.js}"></script>
-<!-- Bootstrap -->
-<script th:src="@{/theme1/js/bootstrap.min.js}"></script>
-<!-- Waypoints -->
-<script th:src="@{/theme1/js/jquery.waypoints.min.js}"></script>
-<!-- Flexslider -->
-<script th:src="@{/theme1/js/jquery.flexslider-min.js}"></script>
-<!-- Magnific Popup -->
-<script th:src="@{/theme1/js/jquery.magnific-popup.min.js}"></script>
-<script th:src="@{/theme1/js/magnific-popup-options.js}"></script>
-<!-- Main -->
-<script th:src="@{/theme1/js/main.js}"></script>
-
 </body>
 </html>
