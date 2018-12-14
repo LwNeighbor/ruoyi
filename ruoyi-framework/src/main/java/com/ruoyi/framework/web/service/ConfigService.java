@@ -9,7 +9,7 @@ import com.ruoyi.system.service.ISysConfigService;
  *
  * @author ruoyi
  */
-@Service("config" )
+@Service("config")
 public class ConfigService {
     @Autowired
     private ISysConfigService configService;

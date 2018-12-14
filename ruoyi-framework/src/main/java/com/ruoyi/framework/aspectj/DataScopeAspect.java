@@ -27,24 +27,24 @@ public class DataScopeAspect {
     /**
      * 全部数据权限
      */
-    public static final String DATA_SCOPE_ALL = "1" ;
+    public static final String DATA_SCOPE_ALL = "1";
 
     /**
      * 自定数据权限
      */
-    public static final String DATA_SCOPE_CUSTOM = "2" ;
+    public static final String DATA_SCOPE_CUSTOM = "2";
 
     /**
      * 数据权限过滤关键字
      */
-    public static final String DATA_SCOPE = "dataScope" ;
+    public static final String DATA_SCOPE = "dataScope";
 
     // 配置织入点
-    @Pointcut("@annotation(com.ruoyi.common.annotation.DataScope)" )
+    @Pointcut("@annotation(com.ruoyi.common.annotation.DataScope)")
     public void dataScopePointCut() {
     }
 
-    @Before("dataScopePointCut()" )
+    @Before("dataScopePointCut()")
     public void doBefore(JoinPoint point) throws Throwable {
         handleDataScope(point);
     }
@@ -81,14 +81,14 @@ public class DataScopeAspect {
                 break;
             } else if (DATA_SCOPE_CUSTOM.equals(dataScope)) {
                 sqlString.append(StringUtils.format(
-                        " OR {}.dept_id IN ( SELECT dept_id FROM sys_role_dept WHERE role_id = {} ) " , alias,
+                        " OR {}.dept_id IN ( SELECT dept_id FROM sys_role_dept WHERE role_id = {} ) ", alias,
                         role.getRoleId()));
             }
         }
 
         if (StringUtils.isNotBlank(sqlString.toString())) {
             BaseEntity baseEntity = (BaseEntity) joinPoint.getArgs()[0];
-            baseEntity.getParams().put(DATA_SCOPE, " AND (" + sqlString.substring(4) + ")" );
+            baseEntity.getParams().put(DATA_SCOPE, " AND (" + sqlString.substring(4) + ")");
         }
     }
 

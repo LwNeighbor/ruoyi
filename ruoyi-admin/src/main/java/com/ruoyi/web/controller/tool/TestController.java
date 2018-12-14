@@ -22,39 +22,39 @@ import io.swagger.annotations.ApiOperation;
  *
  * @author ruoyi
  */
-@Api("用户信息管理" )
+@Api("用户信息管理")
 @RestController
-@RequestMapping("/test/*" )
+@RequestMapping("/test/*")
 public class TestController extends BaseController {
     private final static List<Test> testList = new ArrayList<>();
 
     {
-        testList.add(new Test("1" , "admin" , "admin123" ));
-        testList.add(new Test("2" , "ry" , "admin123" ));
+        testList.add(new Test("1", "admin", "admin123"));
+        testList.add(new Test("2", "ry", "admin123"));
     }
 
-    @ApiOperation("获取列表" )
-    @GetMapping("list" )
+    @ApiOperation("获取列表")
+    @GetMapping("list")
     public List<Test> testList() {
         return testList;
     }
 
-    @ApiOperation("新增用户" )
-    @PostMapping("save" )
+    @ApiOperation("新增用户")
+    @PostMapping("save")
     public AjaxResult save(Test test) {
         return testList.add(test) ? success() : error();
     }
 
-    @ApiOperation("更新用户" )
-    @ApiImplicitParam(name = "Test" , value = "单个用户信息" , dataType = "Test" )
-    @PutMapping("update" )
+    @ApiOperation("更新用户")
+    @ApiImplicitParam(name = "Test", value = "单个用户信息", dataType = "Test")
+    @PutMapping("update")
     public AjaxResult update(Test test) {
         return testList.remove(test) && testList.add(test) ? success() : error();
     }
 
-    @ApiOperation("删除用户" )
-    @ApiImplicitParam(name = "Tests" , value = "单个用户信息" , dataType = "Test" )
-    @DeleteMapping("delete" )
+    @ApiOperation("删除用户")
+    @ApiImplicitParam(name = "Tests", value = "单个用户信息", dataType = "Test")
+    @DeleteMapping("delete")
     public AjaxResult delete(Test test) {
         return testList.remove(test) ? success() : error();
     }

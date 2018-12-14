@@ -14,7 +14,7 @@ public class FileNameLengthLimitExceededException extends FileUploadException {
     private String filename;
 
     public FileNameLengthLimitExceededException(String filename, int length, int maxLength) {
-        super("file name : [" + filename + "], length : [" + length + "], max length : [" + maxLength + "]" );
+        super("file name : [" + filename + "], length : [" + length + "], max length : [" + maxLength + "]");
         this.length = length;
         this.maxLength = maxLength;
         this.filename = filename;

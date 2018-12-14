@@ -25,7 +25,7 @@ import eu.bitwalker.useragentutils.UserAgent;
  * @author liuhulu
  */
 public class AsyncFactory {
-    private static final Logger sys_user_logger = LoggerFactory.getLogger("sys-user" );
+    private static final Logger sys_user_logger = LoggerFactory.getLogger("sys-user");
 
     /**
      * 同步session到数据库
@@ -82,7 +82,7 @@ public class AsyncFactory {
      * @return 任务task
      */
     public static TimerTask recordLogininfor(final String username, final String status, final String message, final Object... args) {
-        final UserAgent userAgent = UserAgent.parseUserAgentString(ServletUtils.getRequest().getHeader("User-Agent" ));
+        final UserAgent userAgent = UserAgent.parseUserAgentString(ServletUtils.getRequest().getHeader("User-Agent"));
         final String ip = ShiroUtils.getIp();
         return new TimerTask() {
             @Override

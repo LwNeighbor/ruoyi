@@ -84,7 +84,7 @@ public class ExcelUtil<T> {
         }
 
         if (sheet == null) {
-            throw new IOException("文件sheet不存在" );
+            throw new IOException("文件sheet不存在");
         }
 
         int rows = sheet.getPhysicalNumberOfRows();
@@ -149,7 +149,7 @@ public class ExcelUtil<T> {
                         }
                     } else if (java.util.Date.class == fieldType) {
                         if (cell.getCellTypeEnum() == CellType.NUMERIC) {
-                            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss" );
+                            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                             cell.setCellValue(sdf.format(cell.getNumericCellValue()));
                             c = sdf.format(cell.getNumericCellValue());
                         } else {
@@ -220,7 +220,7 @@ public class ExcelUtil<T> {
                     HSSFCellStyle cellStyle = workbook.createCellStyle();
                     cellStyle.setAlignment(HorizontalAlignment.CENTER);
                     cellStyle.setVerticalAlignment(VerticalAlignment.CENTER);
-                    if (attr.name().indexOf("注：" ) >= 0) {
+                    if (attr.name().indexOf("注：") >= 0) {
                         HSSFFont font = workbook.createFont();
                         font.setColor(HSSFFont.COLOR_RED);
                         cellStyle.setFont(font);
@@ -247,7 +247,7 @@ public class ExcelUtil<T> {
                     // 如果设置了提示信息则鼠标放上去提示.
                     if (StringUtils.isNotEmpty(attr.prompt())) {
                         // 这里默认设了2-101列提示.
-                        setHSSFPrompt(sheet, "" , attr.prompt(), 1, 100, i, i);
+                        setHSSFPrompt(sheet, "", attr.prompt(), 1, 100, i, i);
                     }
                     // 如果设置了combo属性则本列只能选择不能输入
                     if (attr.combo().length > 0) {
@@ -282,7 +282,7 @@ public class ExcelUtil<T> {
                                 cell.setCellStyle(cs);
                                 if (vo == null) {
                                     // 如果数据存在就填入,不存在填入空格.
-                                    cell.setCellValue("" );
+                                    cell.setCellValue("");
                                     continue;
                                 }
 
@@ -299,7 +299,7 @@ public class ExcelUtil<T> {
                                 }
                             }
                         } catch (Exception e) {
-                            log.error("导出Excel失败{}" , e.getMessage());
+                            log.error("导出Excel失败{}", e.getMessage());
                         }
                     }
                 }
@@ -309,8 +309,8 @@ public class ExcelUtil<T> {
             workbook.write(out);
             return AjaxResult.success(filename);
         } catch (Exception e) {
-            log.error("导出Excel异常{}" , e.getMessage());
-            return AjaxResult.error("导出Excel失败，请联系网站管理员！" );
+            log.error("导出Excel异常{}", e.getMessage());
+            return AjaxResult.error("导出Excel失败，请联系网站管理员！");
         } finally {
             if (workbook != null) {
                 try {
@@ -344,7 +344,7 @@ public class ExcelUtil<T> {
     public static HSSFSheet setHSSFPrompt(HSSFSheet sheet, String promptTitle, String promptContent, int firstRow,
                                           int endRow, int firstCol, int endCol) {
         // 构造constraint对象
-        DVConstraint constraint = DVConstraint.createCustomFormulaConstraint("DD1" );
+        DVConstraint constraint = DVConstraint.createCustomFormulaConstraint("DD1");
         // 四个参数分别是：起始行、终止行、起始列、终止列
         CellRangeAddressList regions = new CellRangeAddressList(firstRow, endRow, firstCol, endCol);
         // 数据有效性对象
@@ -387,9 +387,9 @@ public class ExcelUtil<T> {
      */
     public static String convertByExp(String propertyValue, String converterExp) throws Exception {
         try {
-            String[] convertSource = converterExp.split("," );
+            String[] convertSource = converterExp.split(",");
             for (String item : convertSource) {
-                String[] itemArray = item.split("=" );
+                String[] itemArray = item.split("=");
                 if (itemArray[0].equals(propertyValue)) {
                     return itemArray[1];
                 }
@@ -404,7 +404,7 @@ public class ExcelUtil<T> {
      * 编码文件名
      */
     public String encodingFilename(String filename) {
-        filename = UUID.randomUUID().toString() + "_" + filename + ".xls" ;
+        filename = UUID.randomUUID().toString() + "_" + filename + ".xls";
         return filename;
     }
 

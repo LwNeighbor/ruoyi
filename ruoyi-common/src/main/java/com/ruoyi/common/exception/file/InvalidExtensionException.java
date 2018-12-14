@@ -17,7 +17,7 @@ public class InvalidExtensionException extends FileUploadException {
     private String filename;
 
     public InvalidExtensionException(String[] allowedExtension, String extension, String filename) {
-        super("filename : [" + filename + "], extension : [" + extension + "], allowed extension : [" + Arrays.toString(allowedExtension) + "]" );
+        super("filename : [" + filename + "], extension : [" + extension + "], allowed extension : [" + Arrays.toString(allowedExtension) + "]");
         this.allowedExtension = allowedExtension;
         this.extension = extension;
         this.filename = filename;

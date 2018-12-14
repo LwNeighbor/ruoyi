@@ -12,13 +12,13 @@ import com.ruoyi.framework.web.base.BaseController;
  * @author ruoyi
  */
 @Controller
-@RequestMapping("/monitor/data" )
+@RequestMapping("/monitor/data")
 public class DruidController extends BaseController {
-    private String prefix = "/monitor/druid" ;
+    private String prefix = "/monitor/druid";
 
-    @RequiresPermissions("monitor:data:view" )
+    @RequiresPermissions("monitor:data:view")
     @GetMapping()
     public String index() {
-        return redirect(prefix + "/index" );
+        return redirect(prefix + "/index");
     }
 }

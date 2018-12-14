@@ -23,22 +23,22 @@ public class SysIndexController extends BaseController {
     private ISysMenuService menuService;
 
     // 系统首页
-    @GetMapping("/index" )
+    @GetMapping("/index")
     public String index(ModelMap mmap) {
         // 取身份信息
         SysUser user = getSysUser();
         // 根据用户id取出菜单
         List<SysMenu> menus = menuService.selectMenusByUser(user);
-        mmap.put("menus" , menus);
-        mmap.put("user" , user);
-        mmap.put("copyrightYear" , Global.getCopyrightYear());
-        return "index" ;
+        mmap.put("menus", menus);
+        mmap.put("user", user);
+        mmap.put("copyrightYear", Global.getCopyrightYear());
+        return "index";
     }
 
     // 系统介绍
-    @GetMapping("/system/main" )
+    @GetMapping("/system/main")
     public String main(ModelMap mmap) {
-        mmap.put("version" , Global.getVersion());
-        return "main" ;
+        mmap.put("version", Global.getVersion());
+        return "main";
     }
 }

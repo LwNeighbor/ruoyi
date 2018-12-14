@@ -1,5 +1,6 @@
 package com.ruoyi.common.utils.bean;
 
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,12 +21,12 @@ public class BeanUtils {
     /**
      * 匹配getter方法的正则表达式
      */
-    private static final Pattern GET_PATTERN = Pattern.compile("get(\\p{javaUpperCase}\\w*)" );
+    private static final Pattern GET_PATTERN = Pattern.compile("get(\\p{javaUpperCase}\\w*)");
 
     /**
      * 匹配setter方法的正则表达式
      */
-    private static final Pattern SET_PATTERN = Pattern.compile("set(\\p{javaUpperCase}\\w*)" );
+    private static final Pattern SET_PATTERN = Pattern.compile("set(\\p{javaUpperCase}\\w*)");
 
     /**
      * Bean属性复制工具方法。

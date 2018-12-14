@@ -32,9 +32,9 @@ import com.ruoyi.framework.web.base.BaseController;
  * @author ruoyi
  */
 @Controller
-@RequestMapping("/system/user" )
+@RequestMapping("/system/user")
 public class SysUserController extends BaseController {
-    private String prefix = "system/user" ;
+    private String prefix = "system/user";
 
     @Autowired
     private ISysUserService userService;
@@ -48,14 +48,14 @@ public class SysUserController extends BaseController {
     @Autowired
     private SysPasswordService passwordService;
 
-    @RequiresPermissions("system:user:view" )
+    @RequiresPermissions("system:user:view")
     @GetMapping()
     public String user() {
-        return prefix + "/user" ;
+        return prefix + "/user";
     }
 
-    @RequiresPermissions("system:user:list" )
-    @PostMapping("/list" )
+    @RequiresPermissions("system:user:list")
+    @PostMapping("/list")
     @ResponseBody
     public TableDataInfo list(SysUser user) {
         startPage();
@@ -63,37 +63,37 @@ public class SysUserController extends BaseController {
         return getDataTable(list);
     }
 
-    @Log(title = "用户管理" , businessType = BusinessType.EXPORT)
-    @RequiresPermissions("system:user:export" )
-    @PostMapping("/export" )
+    @Log(title = "用户管理", businessType = BusinessType.EXPORT)
+    @RequiresPermissions("system:user:export")
+    @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(SysUser user) {
         List<SysUser> list = userService.selectUserList(user);
         ExcelUtil<SysUser> util = new ExcelUtil<SysUser>(SysUser.class);
-        return util.exportExcel(list, "user" );
+        return util.exportExcel(list, "user");
     }
 
     /**
      * 新增用户
      */
-    @GetMapping("/add" )
+    @GetMapping("/add")
     public String add(ModelMap mmap) {
-        mmap.put("roles" , roleService.selectRoleAll());
-        mmap.put("posts" , postService.selectPostAll());
-        return prefix + "/add" ;
+        mmap.put("roles", roleService.selectRoleAll());
+        mmap.put("posts", postService.selectPostAll());
+        return prefix + "/add";
     }
 
     /**
      * 新增保存用户
      */
-    @RequiresPermissions("system:user:add" )
-    @Log(title = "用户管理" , businessType = BusinessType.INSERT)
-    @PostMapping("/add" )
+    @RequiresPermissions("system:user:add")
+    @Log(title = "用户管理", businessType = BusinessType.INSERT)
+    @PostMapping("/add")
     @Transactional(rollbackFor = Exception.class)
     @ResponseBody
     public AjaxResult addSave(SysUser user) {
         if (StringUtils.isNotNull(user.getUserId()) && SysUser.isAdmin(user.getUserId())) {
-            return error("不允许修改超级管理员用户" );
+            return error("不允许修改超级管理员用户");
         }
         user.setSalt(ShiroUtils.randomSalt());
         user.setPassword(passwordService.encryptPassword(user.getLoginName(), user.getPassword(), user.getSalt()));
@@ -104,41 +104,41 @@ public class SysUserController extends BaseController {
     /**
      * 修改用户
      */
-    @GetMapping("/edit/{userId}" )
-    public String edit(@PathVariable("userId" ) Long userId, ModelMap mmap) {
-        mmap.put("user" , userService.selectUserById(userId));
-        mmap.put("roles" , roleService.selectRolesByUserId(userId));
-        mmap.put("posts" , postService.selectPostsByUserId(userId));
-        return prefix + "/edit" ;
+    @GetMapping("/edit/{userId}")
+    public String edit(@PathVariable("userId") Long userId, ModelMap mmap) {
+        mmap.put("user", userService.selectUserById(userId));
+        mmap.put("roles", roleService.selectRolesByUserId(userId));
+        mmap.put("posts", postService.selectPostsByUserId(userId));
+        return prefix + "/edit";
     }
 
     /**
      * 修改保存用户
      */
-    @RequiresPermissions("system:user:edit" )
-    @Log(title = "用户管理" , businessType = BusinessType.UPDATE)
-    @PostMapping("/edit" )
+    @RequiresPermissions("system:user:edit")
+    @Log(title = "用户管理", businessType = BusinessType.UPDATE)
+    @PostMapping("/edit")
     @Transactional(rollbackFor = Exception.class)
     @ResponseBody
     public AjaxResult editSave(SysUser user) {
         if (StringUtils.isNotNull(user.getUserId()) && SysUser.isAdmin(user.getUserId())) {
-            return error("不允许修改超级管理员用户" );
+            return error("不允许修改超级管理员用户");
         }
         user.setUpdateBy(ShiroUtils.getLoginName());
         return toAjax(userService.updateUser(user));
     }
 
-    @RequiresPermissions("system:user:resetPwd" )
-    @Log(title = "重置密码" , businessType = BusinessType.UPDATE)
-    @GetMapping("/resetPwd/{userId}" )
-    public String resetPwd(@PathVariable("userId" ) Long userId, ModelMap mmap) {
-        mmap.put("user" , userService.selectUserById(userId));
-        return prefix + "/resetPwd" ;
+    @RequiresPermissions("system:user:resetPwd")
+    @Log(title = "重置密码", businessType = BusinessType.UPDATE)
+    @GetMapping("/resetPwd/{userId}")
+    public String resetPwd(@PathVariable("userId") Long userId, ModelMap mmap) {
+        mmap.put("user", userService.selectUserById(userId));
+        return prefix + "/resetPwd";
     }
 
-    @RequiresPermissions("system:user:resetPwd" )
-    @Log(title = "重置密码" , businessType = BusinessType.UPDATE)
-    @PostMapping("/resetPwd" )
+    @RequiresPermissions("system:user:resetPwd")
+    @Log(title = "重置密码", businessType = BusinessType.UPDATE)
+    @PostMapping("/resetPwd")
     @ResponseBody
     public AjaxResult resetPwdSave(SysUser user) {
         user.setSalt(ShiroUtils.randomSalt());
@@ -146,9 +146,9 @@ public class SysUserController extends BaseController {
         return toAjax(userService.resetUserPwd(user));
     }
 
-    @RequiresPermissions("system:user:remove" )
-    @Log(title = "用户管理" , businessType = BusinessType.DELETE)
-    @PostMapping("/remove" )
+    @RequiresPermissions("system:user:remove")
+    @Log(title = "用户管理", businessType = BusinessType.DELETE)
+    @PostMapping("/remove")
     @ResponseBody
     public AjaxResult remove(String ids) {
         try {
@@ -161,7 +161,7 @@ public class SysUserController extends BaseController {
     /**
      * 校验用户名
      */
-    @PostMapping("/checkLoginNameUnique" )
+    @PostMapping("/checkLoginNameUnique")
     @ResponseBody
     public String checkLoginNameUnique(SysUser user) {
         return userService.checkLoginNameUnique(user.getLoginName());
@@ -170,7 +170,7 @@ public class SysUserController extends BaseController {
     /**
      * 校验手机号码
      */
-    @PostMapping("/checkPhoneUnique" )
+    @PostMapping("/checkPhoneUnique")
     @ResponseBody
     public String checkPhoneUnique(SysUser user) {
         return userService.checkPhoneUnique(user);
@@ -179,7 +179,7 @@ public class SysUserController extends BaseController {
     /**
      * 校验email邮箱
      */
-    @PostMapping("/checkEmailUnique" )
+    @PostMapping("/checkEmailUnique")
     @ResponseBody
     public String checkEmailUnique(SysUser user) {
         return userService.checkEmailUnique(user);

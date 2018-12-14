@@ -12,11 +12,11 @@ import com.ruoyi.framework.web.base.BaseController;
  * @author ruoyi
  */
 @Controller
-@RequestMapping("/tool/swagger" )
+@RequestMapping("/tool/swagger")
 public class SwaggerController extends BaseController {
-    @RequiresPermissions("tool:swagger:view" )
+    @RequiresPermissions("tool:swagger:view")
     @GetMapping()
     public String index() {
-        return redirect("/swagger-ui.html" );
+        return redirect("/swagger-ui.html");
     }
 }

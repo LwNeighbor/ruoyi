@@ -5,10 +5,7 @@ import java.util.Map;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.Signature;
-import org.aspectj.lang.annotation.AfterReturning;
-import org.aspectj.lang.annotation.AfterThrowing;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.annotation.*;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,7 +32,7 @@ public class LogAspect {
     private static final Logger log = LoggerFactory.getLogger(LogAspect.class);
 
     // 配置织入点
-    @Pointcut("@annotation(com.ruoyi.common.annotation.Log)" )
+    @Pointcut("@annotation(com.ruoyi.common.annotation.Log)")
     public void logPointCut() {
     }
 
@@ -44,7 +41,7 @@ public class LogAspect {
      *
      * @param joinPoint 切点
      */
-    @AfterReturning(pointcut = "logPointCut()" )
+    @AfterReturning(pointcut = "logPointCut()")
     public void doBefore(JoinPoint joinPoint) {
         handleLog(joinPoint, null);
     }
@@ -55,7 +52,7 @@ public class LogAspect {
      * @param joinPoint
      * @param e
      */
-    @AfterThrowing(value = "logPointCut()" , throwing = "e" )
+    @AfterThrowing(value = "logPointCut()", throwing = "e")
     public void doAfter(JoinPoint joinPoint, Exception e) {
         handleLog(joinPoint, e);
     }
@@ -91,18 +88,19 @@ public class LogAspect {
                 operLog.setStatus(BusinessStatus.FAIL.ordinal());
                 operLog.setErrorMsg(StringUtils.substring(e.getMessage(), 0, 2000));
             }
+
             // 设置方法名称
             String className = joinPoint.getTarget().getClass().getName();
             String methodName = joinPoint.getSignature().getName();
-            operLog.setMethod(className + "." + methodName + "()" );
+            operLog.setMethod(className + "." + methodName + "()");
             // 处理设置注解上的参数
             getControllerMethodDescription(controllerLog, operLog);
             // 保存数据库
             AsyncManager.me().execute(AsyncFactory.recordOper(operLog));
         } catch (Exception exp) {
             // 记录本地异常日志
-            log.error("==前置通知异常==" );
-            log.error("异常信息:{}" , exp.getMessage());
+            log.error("==前置通知异常==");
+            log.error("异常信息:{}", exp.getMessage());
             exp.printStackTrace();
         }
     }

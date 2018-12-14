@@ -31,11 +31,11 @@ import com.ruoyi.framework.web.base.BaseController;
  * @author ruoyi
  */
 @Controller
-@RequestMapping("/system/user/profile" )
+@RequestMapping("/system/user/profile")
 public class SysProfileController extends BaseController {
     private static final Logger log = LoggerFactory.getLogger(SysProfileController.class);
 
-    private String prefix = "system/user/profile" ;
+    private String prefix = "system/user/profile";
 
     @Autowired
     private ISysUserService userService;
@@ -52,14 +52,14 @@ public class SysProfileController extends BaseController {
     @GetMapping()
     public String profile(ModelMap mmap) {
         SysUser user = getSysUser();
-        user.setSex(dictDataService.selectDictLabel("sys_user_sex" , user.getSex()));
-        mmap.put("user" , user);
-        mmap.put("roleGroup" , userService.selectUserRoleGroup(user.getUserId()));
-        mmap.put("postGroup" , userService.selectUserPostGroup(user.getUserId()));
-        return prefix + "/profile" ;
+        user.setSex(dictDataService.selectDictLabel("sys_user_sex", user.getSex()));
+        mmap.put("user", user);
+        mmap.put("roleGroup", userService.selectUserRoleGroup(user.getUserId()));
+        mmap.put("postGroup", userService.selectUserPostGroup(user.getUserId()));
+        return prefix + "/profile";
     }
 
-    @GetMapping("/checkPassword" )
+    @GetMapping("/checkPassword")
     @ResponseBody
     public boolean checkPassword(String password) {
         SysUser user = getSysUser();
@@ -70,14 +70,14 @@ public class SysProfileController extends BaseController {
         return false;
     }
 
-    @GetMapping("/resetPwd/{userId}" )
-    public String resetPwd(@PathVariable("userId" ) Long userId, ModelMap mmap) {
-        mmap.put("user" , userService.selectUserById(userId));
-        return prefix + "/resetPwd" ;
+    @GetMapping("/resetPwd/{userId}")
+    public String resetPwd(@PathVariable("userId") Long userId, ModelMap mmap) {
+        mmap.put("user", userService.selectUserById(userId));
+        return prefix + "/resetPwd";
     }
 
-    @Log(title = "重置密码" , businessType = BusinessType.UPDATE)
-    @PostMapping("/resetPwd" )
+    @Log(title = "重置密码", businessType = BusinessType.UPDATE)
+    @PostMapping("/resetPwd")
     @ResponseBody
     public AjaxResult resetPwd(SysUser user) {
         user.setSalt(ShiroUtils.randomSalt());
@@ -93,26 +93,26 @@ public class SysProfileController extends BaseController {
     /**
      * 修改用户
      */
-    @GetMapping("/edit/{userId}" )
-    public String edit(@PathVariable("userId" ) Long userId, ModelMap mmap) {
-        mmap.put("user" , userService.selectUserById(userId));
-        return prefix + "/edit" ;
+    @GetMapping("/edit/{userId}")
+    public String edit(@PathVariable("userId") Long userId, ModelMap mmap) {
+        mmap.put("user", userService.selectUserById(userId));
+        return prefix + "/edit";
     }
 
     /**
      * 修改头像
      */
-    @GetMapping("/avatar/{userId}" )
-    public String avatar(@PathVariable("userId" ) Long userId, ModelMap mmap) {
-        mmap.put("user" , userService.selectUserById(userId));
-        return prefix + "/avatar" ;
+    @GetMapping("/avatar/{userId}")
+    public String avatar(@PathVariable("userId") Long userId, ModelMap mmap) {
+        mmap.put("user", userService.selectUserById(userId));
+        return prefix + "/avatar";
     }
 
     /**
      * 修改用户
      */
-    @Log(title = "个人信息" , businessType = BusinessType.UPDATE)
-    @PostMapping("/update" )
+    @Log(title = "个人信息", businessType = BusinessType.UPDATE)
+    @PostMapping("/update")
     @ResponseBody
     public AjaxResult update(SysUser user) {
         if (userService.updateUserInfo(user) > 0) {
@@ -125,10 +125,10 @@ public class SysProfileController extends BaseController {
     /**
      * 保存头像
      */
-    @Log(title = "个人信息" , businessType = BusinessType.UPDATE)
-    @PostMapping("/updateAvatar" )
+    @Log(title = "个人信息", businessType = BusinessType.UPDATE)
+    @PostMapping("/updateAvatar")
     @ResponseBody
-    public AjaxResult updateAvatar(SysUser user, @RequestParam("avatarfile" ) MultipartFile file) {
+    public AjaxResult updateAvatar(SysUser user, @RequestParam("avatarfile") MultipartFile file) {
         try {
             if (!file.isEmpty()) {
                 String avatar = FileUploadUtils.upload(Global.getAvatarPath(), file);
@@ -140,7 +140,7 @@ public class SysProfileController extends BaseController {
             }
             return error();
         } catch (Exception e) {
-            log.error("修改头像失败！" , e);
+            log.error("修改头像失败！", e);
             return error(e.getMessage());
         }
     }

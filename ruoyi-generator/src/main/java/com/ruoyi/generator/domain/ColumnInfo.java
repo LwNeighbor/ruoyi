@@ -66,7 +66,7 @@ public class ColumnInfo {
 
     public void setColumnComment(String columnComment) throws Exception {
         // 根据列描述解析列的配置信息
-        if (StringUtils.isNotEmpty(columnComment) && columnComment.startsWith("{" )) {
+        if (StringUtils.isNotEmpty(columnComment) && columnComment.startsWith("{")) {
             this.configInfo = JSON.unmarshal(columnComment, ColumnConfigInfo.class);
             this.columnComment = configInfo.getTitle();
         } else {

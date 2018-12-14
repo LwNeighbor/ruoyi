@@ -17,7 +17,7 @@ import com.ruoyi.common.utils.YamlUtil;
 public class Global {
     private static final Logger log = LoggerFactory.getLogger(Global.class);
 
-    private static String NAME = "application.yml" ;
+    private static String NAME = "application.yml";
 
     /**
      * 当前对象实例
@@ -58,7 +58,7 @@ public class Global {
                 value = String.valueOf(YamlUtil.getProperty(yamlMap, key));
                 map.put(key, value != null ? value : StringUtils.EMPTY);
             } catch (FileNotFoundException e) {
-                log.error("获取全局配置异常 {}" , key);
+                log.error("获取全局配置异常 {}", key);
             }
         }
         return value;
@@ -68,76 +68,76 @@ public class Global {
      * 获取项目名称
      */
     public static String getName() {
-        return StringUtils.nvl(getConfig("ruoyi.name" ), "RuoYi" );
+        return StringUtils.nvl(getConfig("ruoyi.name"), "RuoYi");
     }
 
     /**
      * 获取项目版本
      */
     public static String getVersion() {
-        return StringUtils.nvl(getConfig("ruoyi.version" ), "3.0.0" );
+        return StringUtils.nvl(getConfig("ruoyi.version"), "3.1.0");
     }
 
     /**
      * 获取版权年份
      */
     public static String getCopyrightYear() {
-        return StringUtils.nvl(getConfig("ruoyi.copyrightYear" ), "2018" );
+        return StringUtils.nvl(getConfig("ruoyi.copyrightYear"), "2018");
     }
 
     /**
      * 获取ip地址开关
      */
     public static Boolean isAddressEnabled() {
-        return Boolean.valueOf(getConfig("ruoyi.addressEnabled" ));
+        return Boolean.valueOf(getConfig("ruoyi.addressEnabled"));
     }
 
     /**
      * 获取文件上传路径
      */
     public static String getProfile() {
-        return getConfig("ruoyi.profile" );
+        return getConfig("ruoyi.profile");
     }
 
     /**
      * 获取头像上传路径
      */
     public static String getAvatarPath() {
-        return getConfig("ruoyi.profile" ) + "avatar/" ;
+        return getConfig("ruoyi.profile") + "avatar/";
     }
 
     /**
      * 获取下载上传路径
      */
     public static String getDownloadPath() {
-        return getConfig("ruoyi.profile" ) + "download/" ;
+        return getConfig("ruoyi.profile") + "download/";
     }
 
     /**
      * 获取作者
      */
     public static String getAuthor() {
-        return StringUtils.nvl(getConfig("gen.author" ), "ruoyi" );
+        return StringUtils.nvl(getConfig("gen.author"), "ruoyi");
     }
 
     /**
      * 生成包路径
      */
     public static String getPackageName() {
-        return StringUtils.nvl(getConfig("gen.packageName" ), "com.ruoyi.project.module" );
+        return StringUtils.nvl(getConfig("gen.packageName"), "com.ruoyi.project.module");
     }
 
     /**
      * 是否自动去除表前缀
      */
     public static String getAutoRemovePre() {
-        return StringUtils.nvl(getConfig("gen.autoRemovePre" ), "true" );
+        return StringUtils.nvl(getConfig("gen.autoRemovePre"), "true");
     }
 
     /**
      * 表前缀(类名不会包含表前缀)
      */
     public static String getTablePrefix() {
-        return StringUtils.nvl(getConfig("gen.tablePrefix" ), "sys_" );
+        return StringUtils.nvl(getConfig("gen.tablePrefix"), "sys_");
     }
 }

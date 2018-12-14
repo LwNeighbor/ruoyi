@@ -27,21 +27,21 @@ import com.ruoyi.framework.web.base.BaseController;
  * @author ruoyi
  */
 @Controller
-@RequestMapping("/system/dict" )
+@RequestMapping("/system/dict")
 public class SysDictTypeController extends BaseController {
-    private String prefix = "system/dict/type" ;
+    private String prefix = "system/dict/type";
 
     @Autowired
     private ISysDictTypeService dictTypeService;
 
-    @RequiresPermissions("system:dict:view" )
+    @RequiresPermissions("system:dict:view")
     @GetMapping()
     public String dictType() {
-        return prefix + "/type" ;
+        return prefix + "/type";
     }
 
-    @PostMapping("/list" )
-    @RequiresPermissions("system:dict:list" )
+    @PostMapping("/list")
+    @RequiresPermissions("system:dict:list")
     @ResponseBody
     public TableDataInfo list(SysDictType dictType) {
         startPage();
@@ -49,31 +49,31 @@ public class SysDictTypeController extends BaseController {
         return getDataTable(list);
     }
 
-    @Log(title = "字典类型" , businessType = BusinessType.EXPORT)
-    @RequiresPermissions("system:dict:export" )
-    @PostMapping("/export" )
+    @Log(title = "字典类型", businessType = BusinessType.EXPORT)
+    @RequiresPermissions("system:dict:export")
+    @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(SysDictType dictType) {
 
         List<SysDictType> list = dictTypeService.selectDictTypeList(dictType);
         ExcelUtil<SysDictType> util = new ExcelUtil<SysDictType>(SysDictType.class);
-        return util.exportExcel(list, "dictType" );
+        return util.exportExcel(list, "dictType");
     }
 
     /**
      * 新增字典类型
      */
-    @GetMapping("/add" )
+    @GetMapping("/add")
     public String add() {
-        return prefix + "/add" ;
+        return prefix + "/add";
     }
 
     /**
      * 新增保存字典类型
      */
-    @Log(title = "字典类型" , businessType = BusinessType.INSERT)
-    @RequiresPermissions("system:dict:add" )
-    @PostMapping("/add" )
+    @Log(title = "字典类型", businessType = BusinessType.INSERT)
+    @RequiresPermissions("system:dict:add")
+    @PostMapping("/add")
     @ResponseBody
     public AjaxResult addSave(SysDictType dict) {
         dict.setCreateBy(ShiroUtils.getLoginName());
@@ -83,27 +83,27 @@ public class SysDictTypeController extends BaseController {
     /**
      * 修改字典类型
      */
-    @GetMapping("/edit/{dictId}" )
-    public String edit(@PathVariable("dictId" ) Long dictId, ModelMap mmap) {
-        mmap.put("dict" , dictTypeService.selectDictTypeById(dictId));
-        return prefix + "/edit" ;
+    @GetMapping("/edit/{dictId}")
+    public String edit(@PathVariable("dictId") Long dictId, ModelMap mmap) {
+        mmap.put("dict", dictTypeService.selectDictTypeById(dictId));
+        return prefix + "/edit";
     }
 
     /**
      * 修改保存字典类型
      */
-    @Log(title = "字典类型" , businessType = BusinessType.UPDATE)
-    @RequiresPermissions("system:dict:edit" )
-    @PostMapping("/edit" )
+    @Log(title = "字典类型", businessType = BusinessType.UPDATE)
+    @RequiresPermissions("system:dict:edit")
+    @PostMapping("/edit")
     @ResponseBody
     public AjaxResult editSave(SysDictType dict) {
         dict.setUpdateBy(ShiroUtils.getLoginName());
         return toAjax(dictTypeService.updateDictType(dict));
     }
 
-    @Log(title = "字典类型" , businessType = BusinessType.DELETE)
-    @RequiresPermissions("system:dict:remove" )
-    @PostMapping("/remove" )
+    @Log(title = "字典类型", businessType = BusinessType.DELETE)
+    @RequiresPermissions("system:dict:remove")
+    @PostMapping("/remove")
     @ResponseBody
     public AjaxResult remove(String ids) {
         try {
@@ -116,18 +116,18 @@ public class SysDictTypeController extends BaseController {
     /**
      * 查询字典详细
      */
-    @RequiresPermissions("system:dict:list" )
-    @GetMapping("/detail/{dictId}" )
-    public String detail(@PathVariable("dictId" ) Long dictId, ModelMap mmap) {
-        mmap.put("dict" , dictTypeService.selectDictTypeById(dictId));
-        mmap.put("dictList" , dictTypeService.selectDictTypeAll());
-        return "system/dict/data/data" ;
+    @RequiresPermissions("system:dict:list")
+    @GetMapping("/detail/{dictId}")
+    public String detail(@PathVariable("dictId") Long dictId, ModelMap mmap) {
+        mmap.put("dict", dictTypeService.selectDictTypeById(dictId));
+        mmap.put("dictList", dictTypeService.selectDictTypeAll());
+        return "system/dict/data/data";
     }
 
     /**
      * 校验字典类型
      */
-    @PostMapping("/checkDictTypeUnique" )
+    @PostMapping("/checkDictTypeUnique")
     @ResponseBody
     public String checkDictTypeUnique(SysDictType dictType) {
         return dictTypeService.checkDictTypeUnique(dictType);
