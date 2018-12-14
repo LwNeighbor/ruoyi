@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.blog.mapper.OptionsMapper">
+    
+    <resultMap type="Options" id="OptionsResult">
+        <result property="name"    column="name"    />
+        <result property="value"    column="value"    />
+        <result property="description"    column="description"    />
+    </resultMap>
+	
+	<sql id="selectOptionsVo">
+        select name, value, description from blog_options
+    </sql>
+	
+    <select id="selectOptionsList" parameterType="Options" resultMap="OptionsResult">
+        <include refid="selectOptionsVo"/>
+        <where>  
+            <if test="name != null  and name != '' "> and name = #{name}</if>
+             <if test="value != null  and value != '' "> and value = #{value}</if>
+             <if test="description != null  and description != '' "> and description = #{description}</if>
+         </where>
+    </select>
+    
+    <select id="selectOptionsById" parameterType="String" resultMap="OptionsResult">
+        <include refid="selectOptionsVo"/>
+        where name = #{name}
+    </select>
+        
+    <insert id="insertOptions" parameterType="Options">
+        insert into blog_options
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="name != null  and name != ''  ">name,</if>
+			<if test="value != null  and value != ''  ">value,</if>
+			<if test="description != null  and description != ''  ">description,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="name != null  and name != ''  ">#{name},</if>
+			<if test="value != null  and value != ''  ">#{value},</if>
+			<if test="description != null  and description != ''  ">#{description},</if>
+         </trim>
+    </insert>
+	 
+    <update id="updateOptions" parameterType="Options">
+        update blog_options
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="value != null  and value != ''  ">value = #{value},</if>
+            <if test="description != null  and description != ''  ">description = #{description},</if>
+        </trim>
+        where name = #{name}
+    </update>
+
+	<delete id="deleteOptionsById" parameterType="String">
+        delete from blog_options where name = #{name}
+    </delete>
+	
+    <delete id="deleteOptionsByIds" parameterType="String">
+        delete from blog_options where name in 
+        <foreach item="name" collection="array" open="(" separator="," close=")">
+            #{name}
+        </foreach>
+    </delete>
+    
+</mapper>

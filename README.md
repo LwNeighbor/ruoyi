@@ -1,14 +1,22 @@
 ## 平台简介
 
-一直想做一款后台管理系统，看了很多优秀的开源项目但是发现没有合适的。于是利用空闲休息时间开始自己写了一套后台系统。如此有了若依。她可以用于所有的Web应用程序，如网站管理后台，网站会员中心，CMS，CRM，OA。所有前端后台代码封装过后十分精简易上手，出错概率低。同时支持移动客户端访问。系统会陆续更新一些实用功能。
+本项目FORK自  [若依/RuoYi](https://gitee.com/y_project/RuoYi)
+暂时花了几分钟时间把自己整合过的功能传上来：
+###### 集成jwt
+应很多同学要求写了一个jwt的模块，详情ruoyi-app，若需要使用`shiro-jwt`，见[shiro-jwt分支](https://gitee.com/zhangmrit/RuoYi/tree/shiro-jwt/)
+###### 多数据源切面
+删了多数据源注解，改成根据方法名自动切换，默认主从分离（当然主从地址一样），当只有一个数据源的时候虽然会打印日志，实际主从还是同一个，膈应就自己改一下
+###### 集成通用mapper
+一开始想整合mybatis-plus，这玩意太重了，而且crud和本项目很多地方八字不合。mapper继承com.ruoyi.common.base.BaseMapper<T>后就可以策马奔腾啦，谁用谁知道
+###### 控制台日志分等级彩色渲染和多环境修改
+具体看logback-spring.xml和application.xml改动
+###### 集成七牛云，阿里云，腾讯云OSS
+- 先去七牛注册一下（推荐，10g免费空间）
+- 详见sql/oss.sql,在上传页面配置好相关参数即可使用
+- 阿里云配置问题：长度必须在 1-1023字节之间，而且不能包含回车、换行、以及xml1.0不支持的字符，同时也不能以“/”或者“\”开头。
+- 集成富文本编辑器上传，列表中显示预览图，支持点击放大
 
-寓意：你若不离不弃，我必生死相依
-
-若依基于hplus和inspinia两套后台系统模板开发。有需要可自行到群内下载。
-
-> RuoYi从3.0开始，进行模块拆分，将原先的单应用转变为多模块，如需单应用，请移步 [RuoYi-fast](https://gitee.com/y_project/RuoYi-fast)  
-
-> 推荐使用阿里云部署，通用云产品代金券 ：[点我领取](https://promotion.aliyun.com/ntms/yunparter/invite.html?userCode=brki8iof)
+> 阿里云双12活动低至2折 ：[点我购买](https://m.aliyun.com/act/team1212?params=N.DTB4ZxQhX0#/)
 
 ## 内置功能
 
@@ -29,7 +37,8 @@
 15. 在线构建器：拖动表单元素生成相应的HTML代码。
 16. 连接池监视：监视当期系统数据库连接池状态，可进行分析SQL找出系统性能瓶颈。
 ## 在线体验
-> admin/admin123
+> admin/admin123  
+> 陆陆续续收到一些打赏，为了更好的体验已用于演示服务器升级。谢谢各位小伙伴。
 
 演示地址：http://ruoyi.vip  
 

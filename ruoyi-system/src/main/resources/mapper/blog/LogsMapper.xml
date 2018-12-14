@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.blog.mapper.LogsMapper">
+    
+    <resultMap type="Logs" id="LogsResult">
+        <result property="id"    column="id"    />
+        <result property="action"    column="action"    />
+        <result property="data"    column="data"    />
+        <result property="authorId"    column="author_id"    />
+        <result property="ip"    column="ip"    />
+        <result property="created"    column="created"    />
+    </resultMap>
+	
+	<sql id="selectLogsVo">
+        select id, action, data, author_id, ip, created from blog_logs
+    </sql>
+	
+    <select id="selectLogsList" parameterType="Logs" resultMap="LogsResult">
+        <include refid="selectLogsVo"/>
+        <where>  
+            <if test="id != null "> and id = #{id}</if>
+             <if test="action != null  and action != '' "> and action = #{action}</if>
+             <if test="data != null  and data != '' "> and data = #{data}</if>
+             <if test="authorId != null "> and author_id = #{authorId}</if>
+             <if test="ip != null  and ip != '' "> and ip = #{ip}</if>
+             <if test="created != null "> and created = #{created}</if>
+         </where>
+    </select>
+    
+    <select id="selectLogsById" parameterType="Integer" resultMap="LogsResult">
+        <include refid="selectLogsVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertLogs" parameterType="Logs">
+        insert into blog_logs
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null  ">id,</if>
+			<if test="action != null  and action != ''  ">action,</if>
+			<if test="data != null  and data != ''  ">data,</if>
+			<if test="authorId != null  ">author_id,</if>
+			<if test="ip != null  and ip != ''  ">ip,</if>
+			<if test="created != null  ">created,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null  ">#{id},</if>
+			<if test="action != null  and action != ''  ">#{action},</if>
+			<if test="data != null  and data != ''  ">#{data},</if>
+			<if test="authorId != null  ">#{authorId},</if>
+			<if test="ip != null  and ip != ''  ">#{ip},</if>
+			<if test="created != null  ">#{created},</if>
+         </trim>
+    </insert>
+	 
+    <update id="updateLogs" parameterType="Logs">
+        update blog_logs
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="action != null  and action != ''  ">action = #{action},</if>
+            <if test="data != null  and data != ''  ">data = #{data},</if>
+            <if test="authorId != null  ">author_id = #{authorId},</if>
+            <if test="ip != null  and ip != ''  ">ip = #{ip},</if>
+            <if test="created != null  ">created = #{created},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+	<delete id="deleteLogsById" parameterType="Integer">
+        delete from blog_logs where id = #{id}
+    </delete>
+	
+    <delete id="deleteLogsByIds" parameterType="String">
+        delete from blog_logs where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+    
+</mapper>

@@ -8,17 +8,19 @@ import com.ruoyi.framework.web.base.BaseController;
 
 /**
  * druid 监控
- *
+ * 
  * @author ruoyi
  */
 @Controller
 @RequestMapping("/monitor/data")
-public class DruidController extends BaseController {
+public class DruidController extends BaseController
+{
     private String prefix = "/monitor/druid";
 
     @RequiresPermissions("monitor:data:view")
     @GetMapping()
-    public String index() {
+    public String index()
+    {
         return redirect(prefix + "/index");
     }
 }

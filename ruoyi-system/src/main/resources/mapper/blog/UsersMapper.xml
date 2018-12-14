@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.blog.mapper.UsersMapper">
+    
+    <resultMap type="Users" id="UsersResult">
+        <result property="uid"    column="uid"    />
+        <result property="username"    column="username"    />
+        <result property="password"    column="password"    />
+        <result property="email"    column="email"    />
+        <result property="homeUrl"    column="home_url"    />
+        <result property="screenName"    column="screen_name"    />
+        <result property="created"    column="created"    />
+        <result property="activated"    column="activated"    />
+        <result property="logged"    column="logged"    />
+        <result property="groupName"    column="group_name"    />
+    </resultMap>
+	
+	<sql id="selectUsersVo">
+        select uid, username, password, email, home_url, screen_name, created, activated, logged, group_name from blog_users
+    </sql>
+	
+    <select id="selectUsersList" parameterType="Users" resultMap="UsersResult">
+        <include refid="selectUsersVo"/>
+        <where>  
+            <if test="uid != null "> and uid = #{uid}</if>
+             <if test="username != null  and username != '' "> and username = #{username}</if>
+             <if test="password != null  and password != '' "> and password = #{password}</if>
+             <if test="email != null  and email != '' "> and email = #{email}</if>
+             <if test="homeUrl != null  and homeUrl != '' "> and home_url = #{homeUrl}</if>
+             <if test="screenName != null  and screenName != '' "> and screen_name = #{screenName}</if>
+             <if test="created != null "> and created = #{created}</if>
+             <if test="activated != null "> and activated = #{activated}</if>
+             <if test="logged != null "> and logged = #{logged}</if>
+             <if test="groupName != null  and groupName != '' "> and group_name = #{groupName}</if>
+         </where>
+    </select>
+    
+    <select id="selectUsersById" parameterType="Integer" resultMap="UsersResult">
+        <include refid="selectUsersVo"/>
+        where uid = #{uid}
+    </select>
+        
+    <insert id="insertUsers" parameterType="Users">
+        insert into blog_users
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="uid != null  ">uid,</if>
+			<if test="username != null  and username != ''  ">username,</if>
+			<if test="password != null  and password != ''  ">password,</if>
+			<if test="email != null  and email != ''  ">email,</if>
+			<if test="homeUrl != null  and homeUrl != ''  ">home_url,</if>
+			<if test="screenName != null  and screenName != ''  ">screen_name,</if>
+			<if test="created != null  ">created,</if>
+			<if test="activated != null  ">activated,</if>
+			<if test="logged != null  ">logged,</if>
+			<if test="groupName != null  and groupName != ''  ">group_name,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="uid != null  ">#{uid},</if>
+			<if test="username != null  and username != ''  ">#{username},</if>
+			<if test="password != null  and password != ''  ">#{password},</if>
+			<if test="email != null  and email != ''  ">#{email},</if>
+			<if test="homeUrl != null  and homeUrl != ''  ">#{homeUrl},</if>
+			<if test="screenName != null  and screenName != ''  ">#{screenName},</if>
+			<if test="created != null  ">#{created},</if>
+			<if test="activated != null  ">#{activated},</if>
+			<if test="logged != null  ">#{logged},</if>
+			<if test="groupName != null  and groupName != ''  ">#{groupName},</if>
+         </trim>
+    </insert>
+	 
+    <update id="updateUsers" parameterType="Users">
+        update blog_users
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="username != null  and username != ''  ">username = #{username},</if>
+            <if test="password != null  and password != ''  ">password = #{password},</if>
+            <if test="email != null  and email != ''  ">email = #{email},</if>
+            <if test="homeUrl != null  and homeUrl != ''  ">home_url = #{homeUrl},</if>
+            <if test="screenName != null  and screenName != ''  ">screen_name = #{screenName},</if>
+            <if test="created != null  ">created = #{created},</if>
+            <if test="activated != null  ">activated = #{activated},</if>
+            <if test="logged != null  ">logged = #{logged},</if>
+            <if test="groupName != null  and groupName != ''  ">group_name = #{groupName},</if>
+        </trim>
+        where uid = #{uid}
+    </update>
+
+	<delete id="deleteUsersById" parameterType="Integer">
+        delete from blog_users where uid = #{uid}
+    </delete>
+	
+    <delete id="deleteUsersByIds" parameterType="String">
+        delete from blog_users where uid in 
+        <foreach item="uid" collection="array" open="(" separator="," close=")">
+            #{uid}
+        </foreach>
+    </delete>
+    
+</mapper>

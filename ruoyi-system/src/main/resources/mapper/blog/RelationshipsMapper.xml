@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.blog.mapper.RelationshipsMapper">
+    
+    <resultMap type="Relationships" id="RelationshipsResult">
+        <result property="cid"    column="cid"    />
+        <result property="mid"    column="mid"    />
+    </resultMap>
+	
+	<sql id="selectRelationshipsVo">
+        select cid, mid from blog_relationships
+    </sql>
+	
+    <select id="selectRelationshipsList" parameterType="Relationships" resultMap="RelationshipsResult">
+        <include refid="selectRelationshipsVo"/>
+        <where>  
+            <if test="cid != null "> and cid = #{cid}</if>
+             <if test="mid != null "> and mid = #{mid}</if>
+         </where>
+    </select>
+    
+    <select id="selectRelationshipsById" parameterType="Integer" resultMap="RelationshipsResult">
+        <include refid="selectRelationshipsVo"/>
+        where cid = #{cid}
+    </select>
+        
+    <insert id="insertRelationships" parameterType="Relationships">
+        insert into blog_relationships
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="cid != null  ">cid,</if>
+			<if test="mid != null  ">mid,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="cid != null  ">#{cid},</if>
+			<if test="mid != null  ">#{mid},</if>
+         </trim>
+    </insert>
+	 
+    <update id="updateRelationships" parameterType="Relationships">
+        update blog_relationships
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="mid != null  ">mid = #{mid},</if>
+        </trim>
+        where cid = #{cid}
+    </update>
+
+	<delete id="deleteRelationshipsById" parameterType="Integer">
+        delete from blog_relationships where cid = #{cid}
+    </delete>
+	
+    <delete id="deleteRelationshipsByIds" parameterType="String">
+        delete from blog_relationships where cid in 
+        <foreach item="cid" collection="array" open="(" separator="," close=")">
+            #{cid}
+        </foreach>
+    </delete>
+    
+</mapper>

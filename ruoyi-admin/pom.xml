@@ -56,11 +56,6 @@
 			<version>${aliyun.oss.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>tk.mybatis</groupId>
-			<artifactId>mapper</artifactId>
-			<version>4.0.4</version>
-		</dependency>
-		<dependency>
 			<groupId>com.qcloud</groupId>
 			<artifactId>cos_api</artifactId>
 			<version>${qcloud.cos.version}</version>
@@ -78,16 +73,9 @@
 			<version>${fastjson.version}</version>
 		</dependency>
 
-		<!--重新编译时忽略test-->
-		<dependency>
-			<groupId>org.apache.maven.plugins</groupId>
-			<artifactId>maven-resources-plugin</artifactId>
-			<version>2.7</version>
-		</dependency>
 	</dependencies>
 
 	<build>
-		<finalName>${artifactId}</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
@@ -103,7 +91,7 @@
 					</execution>
 				</executions>
 			</plugin>
-			<!--<plugin>
+			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
 				<version>3.0.0</version>
@@ -111,22 +99,9 @@
 					<failOnMissingWebXml>false</failOnMissingWebXml>
 					<warName>${artifactId}</warName>
 				</configuration>
-			</plugin>-->
+			</plugin>
 		</plugins>
+		<finalName>${artifactId}</finalName>
 	</build>
-
-	<pluginRepositories>
-		<pluginRepository>
-			<id>public</id>
-			<name>aliyun nexus</name>
-			<url>http://maven.aliyun.com/nexus/content/groups/public/</url>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</pluginRepository>
-	</pluginRepositories>
 
 </project>
