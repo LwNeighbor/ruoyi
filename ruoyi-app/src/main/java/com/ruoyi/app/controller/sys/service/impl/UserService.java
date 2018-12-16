@@ -7,13 +7,11 @@ import com.ruoyi.app.controller.sys.entity.AppUser;
 import com.ruoyi.app.controller.sys.mapper.UserMapper;
 
 @Service("userService")
-public class UserService
-{
+public class UserService {
     @Autowired
     UserMapper userMapper;
 
-    public AppUser findByUsername(String username)
-    {
+    public AppUser findByUsername(String username) {
         AppUser appUser = new AppUser();
         appUser.setUsername(username);
         // return userMapper.selectOne(user);
@@ -23,8 +21,7 @@ public class UserService
         return appUser;
     }
 
-    public AppUser findUserById(long userId)
-    {
+    public AppUser findUserById(long userId) {
         //return userMapper.selectByPrimaryKey(userId);
         AppUser appUser = new AppUser();
         appUser.setUsername("test");

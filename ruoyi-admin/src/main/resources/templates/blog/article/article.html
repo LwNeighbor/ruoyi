@@ -27,10 +27,7 @@
 				<a class="btn btn-success" onclick="$.operate.addFull()" shiro:hasPermission="blog:article:publish">
 					<i class="fa fa-plus"></i> 发布文章
 				</a>
-				<a class="btn btn-success" onclick="$.operate.add()" shiro:hasPermission="blog:article:add">
-					<i class="fa fa-plus"></i> 添加
-				</a>
-				<a class="btn btn-primary btn-edit disabled" onclick="$.operate.edit()" shiro:hasPermission="blog:article:edit">
+				<a class="btn btn-primary btn-edit disabled" onclick="$.operate.editFull()" shiro:hasPermission="blog:article:edit">
 					<i class="fa fa-edit"></i> 修改
 				</a>
 				<a class="btn btn-danger btn-del btn-del disabled" onclick="$.operate.removeAll()" shiro:hasPermission="blog:article:remove">

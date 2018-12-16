@@ -1,6 +1,9 @@
 package com.ruoyi.web.controller.blog;
 
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
+
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +21,7 @@ import com.ruoyi.framework.web.base.BaseController;
 import com.ruoyi.framework.web.page.TableDataInfo;
 import com.ruoyi.common.base.AjaxResult;
 import com.ruoyi.common.utils.ExcelUtil;
+import org.thymeleaf.util.DateUtils;
 
 /**
  * 文章 信息操作处理
@@ -93,8 +97,9 @@ public class ArticleController extends BaseController
 	@Log(title = "文章", businessType = BusinessType.INSERT)
 	@PostMapping("/add")
 	@ResponseBody
-	public AjaxResult addSave(Article article)
-	{		
+	public AjaxResult addSave(Article article) {
+
+		article.setCreated(LocalDate.now().toString());
 		return toAjax(articleService.insertArticle(article));
 	}
 

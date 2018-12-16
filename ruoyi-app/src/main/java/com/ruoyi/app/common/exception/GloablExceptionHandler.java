@@ -14,19 +14,17 @@ import com.ruoyi.app.common.page.ResultData;
  * <p>Description:</p>
  * <p>Copyright: Copyright (c) 2018 2018年11月29日 下午6:34:26</p>
  * <p>Company:  </p>
+ *
  * @author zmr
  * @version 1.0
  */
 @ControllerAdvice
-public class GloablExceptionHandler
-{
+public class GloablExceptionHandler {
     @ResponseBody
     @ExceptionHandler(Exception.class)
-    public ResultData handleException(Exception e)
-    {
+    public ResultData handleException(Exception e) {
         String msg = e.getMessage();
-        if (msg == null || msg.equals(""))
-        {
+        if (msg == null || msg.equals("")) {
             msg = "服务器出错";
         }
         return new ResultData(500, msg);
@@ -36,8 +34,7 @@ public class GloablExceptionHandler
     @ResponseBody
     @ResponseStatus(HttpStatus.UNAUTHORIZED)
     @ExceptionHandler(UnauthorizedException.class)
-    public ResultData handle401()
-    {
+    public ResultData handle401() {
         return new ResultData(401, "Unauthorized");
     }
 }

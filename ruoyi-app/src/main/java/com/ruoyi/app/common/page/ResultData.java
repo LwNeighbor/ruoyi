@@ -6,30 +6,33 @@ import java.util.List;
 /**
  * 表格分页数据对象
  */
-public class ResultData implements Serializable
-{
+public class ResultData implements Serializable {
     //
     private static final long serialVersionUID = -2652773809295318093L;
 
-    /** 消息状态码 */
-    private int               code;
+    /**
+     * 消息状态码
+     */
+    private int code;
 
-    private String            msg;
-
-    /** 总记录数 */
-    private Long              total;
-
-    /** 列表数据 */
-    private List<?>           rows;
-
-    private Object            data;
+    private String msg;
 
     /**
-     * 
+     * 总记录数
+     */
+    private Long total;
+
+    /**
+     * 列表数据
+     */
+    private List<?> rows;
+
+    private Object data;
+
+    /**
      * @author zmr
      */
-    public ResultData()
-    {
+    public ResultData() {
         super();
     }
 
@@ -38,8 +41,7 @@ public class ResultData implements Serializable
      * @param msg
      * @author zmr
      */
-    public ResultData(int code, String msg)
-    {
+    public ResultData(int code, String msg) {
         super();
         this.code = code;
         this.msg = msg;
@@ -51,8 +53,7 @@ public class ResultData implements Serializable
      * @param data
      * @author zmr
      */
-    public ResultData(int code, String msg, Object data)
-    {
+    public ResultData(int code, String msg, Object data) {
         super();
         this.code = code;
         this.msg = msg;
@@ -66,8 +67,7 @@ public class ResultData implements Serializable
      * @param rows
      * @author zmr
      */
-    public ResultData(int code, String msg, Long total, List<?> rows)
-    {
+    public ResultData(int code, String msg, Long total, List<?> rows) {
         super();
         this.code = code;
         this.msg = msg;
@@ -75,63 +75,51 @@ public class ResultData implements Serializable
         this.rows = rows;
     }
 
-    public int getCode()
-    {
+    public int getCode() {
         return code;
     }
 
-    public void setCode(int code)
-    {
+    public void setCode(int code) {
         this.code = code;
     }
 
-    public String getMsg()
-    {
+    public String getMsg() {
         return msg;
     }
 
-    public void setMsg(String msg)
-    {
+    public void setMsg(String msg) {
         this.msg = msg;
     }
 
-    public Long getTotal()
-    {
+    public Long getTotal() {
         return total;
     }
 
-    public void setTotal(Long total)
-    {
+    public void setTotal(Long total) {
         this.total = total;
     }
 
-    public List<?> getRows()
-    {
+    public List<?> getRows() {
         return rows;
     }
 
-    public void setRows(List<?> rows)
-    {
+    public void setRows(List<?> rows) {
         this.rows = rows;
     }
 
-    public Object getData()
-    {
+    public Object getData() {
         return data;
     }
 
-    public void setData(Object data)
-    {
+    public void setData(Object data) {
         this.data = data;
     }
 
-    public static ResultData success()
-    {
+    public static ResultData success() {
         return new ResultData(0, "success");
     }
 
-    public static ResultData success(Object data)
-    {
+    public static ResultData success(Object data) {
         return new ResultData(0, "success", data);
     }
 }

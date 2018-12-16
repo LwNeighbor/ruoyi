@@ -28,11 +28,11 @@ public class Article extends BaseEntity {
     /**
      * 创建时间
      */
-    private Integer created;
+    private String created;
     /**
      * 修改时间
      */
-    private Integer modified;
+    private String modified;
     /**
      * 内容文字
      */
@@ -102,19 +102,19 @@ public class Article extends BaseEntity {
         return slug;
     }
 
-    public void setCreated(Integer created) {
+    public void setCreated(String created) {
         this.created = created;
     }
 
-    public Integer getCreated() {
+    public String getCreated() {
         return created;
     }
 
-    public void setModified(Integer modified) {
+    public void setModified(String modified) {
         this.modified = modified;
     }
 
-    public Integer getModified() {
+    public String getModified() {
         return modified;
     }
 

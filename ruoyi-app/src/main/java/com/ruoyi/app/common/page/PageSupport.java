@@ -11,13 +11,11 @@ import com.ruoyi.common.support.Convert;
 /**
  * 表格数据处理
  */
-public class PageSupport
-{
+public class PageSupport {
     /**
      * 封装分页对象
      */
-    public static PageDomain getPageDomain()
-    {
+    public static PageDomain getPageDomain() {
         PageDomain pageDomain = new PageDomain();
         pageDomain.setPageNum(Convert.toInt(getParameter(Constants.PAGE_NUM)));
         pageDomain.setPageSize(Convert.toInt(getParameter(Constants.PAGE_SIZE)));
@@ -26,21 +24,18 @@ public class PageSupport
         return pageDomain;
     }
 
-    public static PageDomain buildPageRequest()
-    {
+    public static PageDomain buildPageRequest() {
         return getPageDomain();
     }
 
-    public static String getParameter(String name)
-    {
+    public static String getParameter(String name) {
         return getRequest().getParameter(name);
     }
 
     /**
      * 获取request
      */
-    public static HttpServletRequest getRequest()
-    {
+    public static HttpServletRequest getRequest() {
         return ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
     }
 }
