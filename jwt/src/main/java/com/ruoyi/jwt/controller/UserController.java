@@ -44,8 +44,9 @@ public class UserController {
 
     @UserLoginToken
     @GetMapping("/getMessage")
-    public String getMessage(){
-        return "你已通过验证";
+    public AjaxResult getMessage(){
+
+        return AjaxResult.success("你已通过验证");
     }
 
 

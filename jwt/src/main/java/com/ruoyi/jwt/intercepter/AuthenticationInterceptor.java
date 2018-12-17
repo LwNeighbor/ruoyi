@@ -4,6 +4,8 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTDecodeException;
+import com.auth0.jwt.interfaces.Claim;
+import com.auth0.jwt.interfaces.DecodedJWT;
 import com.ruoyi.jwt.annotation.PassToken;
 import com.ruoyi.jwt.annotation.UserLoginToken;
 import com.ruoyi.jwt.domain.User;
@@ -15,6 +17,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.lang.reflect.Method;
+import java.util.Map;
 
 public class AuthenticationInterceptor implements HandlerInterceptor {
     @Autowired
@@ -50,10 +53,8 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
                 if(token == null){
                     throw new RuntimeException("无Token,请重新登陆");
                 }
-                //获取token中的user id
-                String userId = JWT.decode(token).getAudience().get(0);
 
-                User user = userService.findUserById(userId);
+                User user = userService.findUserById("1");
 
                 if(user == null){
                     throw new RuntimeException("用户不存在,请重新登陆");
@@ -61,9 +62,9 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
 
                 //验证token
                 JWTVerifier build = JWT.require(Algorithm.HMAC256(user.getPassword())).build();
-
                 try {
                     build.verify(token);
+
                 }catch (JWTDecodeException e){
                     throw new RuntimeException("401");
                 }
